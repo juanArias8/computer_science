@@ -20,9 +20,13 @@ class RSA(object):
         self.n = self.p * self.q
 
     def build_public_keys(self):
-        self.m = self.p * self.q
-        self.e = utils.get_relative_prime(self.n)
+        self.m = (self.p - 1) * (self.q - 1)
+        self.e = utils.get_relative_prime(self.m, self.n)
 
     def build_decrypt_key(self):
         module = utils.get_exponent_for_decrypt(self.n)
         self.d = utils.get_powers_in_module(self.e, module, self.n)
+
+
+if __name__ == '__main__':
+    pass

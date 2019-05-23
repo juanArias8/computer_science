@@ -12,13 +12,15 @@ def build_random_prime_from_interval(lower_value, higher_value):
     return nt.randprime(lower_value, higher_value)
 
 
-def get_relative_prime(n):
+def get_relative_prime(m, n):
     counter = 3
     while True:
-        if igcd(counter, n) == 1:
+        relative_prime = counter if igcd(counter, m) == 1 else None
+        if relative_prime and 2 ** relative_prime > n:
             break
         counter += 1
-    return counter
+
+    return relative_prime
 
 
 def get_binary_string(number):
